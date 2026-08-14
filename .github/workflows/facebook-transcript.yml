@@ -24,75 +24,72 @@ jobs:
           python -m pip install --upgrade pip
           pip install -U yt-dlp faster-whisper
           sudo apt-get update
-          sudo apt-get install -y ffmpeg
+          sudo apt-get install -y ffmpeg tesseract-ocr tesseract-ocr-eng tesseract-ocr-vie
 
-      - name: Resolve Facebook video and try captions
+      - name: Download Facebook video and audio
         env:
           FB_URL: 'https://www.facebook.com/share/v/14i9KioNDW5/?mibextid=wwXIfr'
         run: |
-          mkdir -p output
-          yt-dlp --no-playlist --write-subs --write-auto-subs --sub-langs 'vi.*,en.*' --skip-download --convert-subs srt -o 'output/video.%(ext)s' "$FB_URL" || true
+          mkdir -p output /tmp/fbframes
+          yt-dlp --no-playlist --write-subs --write-auto-subs --sub-langs 'vi.*,en.*' --convert-subs srt -o '/tmp/source.%(ext)s' "$FB_URL"
+          SRC=$(ls /tmp/source.* | grep -Ev '\.(srt|vtt|json)$' | head -n 1)
+          ffmpeg -y -i "$SRC" -vn -ac 1 -ar 16000 /tmp/audio.wav
           yt-dlp --no-playlist --dump-single-json "$FB_URL" > output/metadata.json || true
+          cp /tmp/source*.srt output/ 2>/dev/null || true
+          ffmpeg -y -i "$SRC" -vf fps=1/2,scale=1280:-1 /tmp/fbframes/frame_%04d.jpg
 
-      - name: Download audio if needed
-        env:
-          FB_URL: 'https://www.facebook.com/share/v/14i9KioNDW5/?mibextid=wwXIfr'
-        run: |
-          if ls output/*.srt >/dev/null 2>&1; then
-            echo 'Subtitle found; skipping audio download.'
-          else
-            yt-dlp --no-playlist -x --audio-format mp3 --audio-quality 0 -o 'output/audio.%(ext)s' "$FB_URL"
-          fi
-
-      - name: Build transcript
+      - name: Transcribe audio with Whisper
         run: |
           python - <<'PY'
           from pathlib import Path
-          import re
+          from faster_whisper import WhisperModel
 
-          out = Path('output')
-          srts = sorted(out.glob('*.srt'))
-          if srts:
-              text = srts[0].read_text(encoding='utf-8', errors='ignore')
-              lines=[]
-              for line in text.splitlines():
-                  s=line.strip()
-                  if not s or s.isdigit() or '-->' in s:
-                      continue
-                  s=re.sub(r'<[^>]+>', '', s)
-                  if not lines or lines[-1] != s:
-                      lines.append(s)
-              (out/'transcript.txt').write_text('\n'.join(lines), encoding='utf-8')
-              print('Transcript extracted from subtitles:', srts[0])
-          else:
-              from faster_whisper import WhisperModel
-              audios = list(out.glob('audio.*'))
-              if not audios:
-                  raise SystemExit('No subtitles and no audio were downloaded')
-              model = WhisperModel('small', device='cpu', compute_type='int8')
-              segments, info = model.transcribe(str(audios[0]), beam_size=5, vad_filter=True)
-              lines=[]
-              timed=[]
-              for seg in segments:
-                  t=seg.text.strip()
-                  if t:
-                      lines.append(t)
-                      timed.append(f'[{seg.start:07.2f} - {seg.end:07.2f}] {t}')
-              (out/'transcript.txt').write_text('\n'.join(lines), encoding='utf-8')
-              (out/'transcript_timed.txt').write_text('\n'.join(timed), encoding='utf-8')
-              (out/'language.txt').write_text(str(info.language), encoding='utf-8')
-              print('Detected language:', info.language)
+          prompt = (
+              'Video tiếng Việt về cách tìm tài liệu nghiên cứu khoa học. '
+              'Các tên riêng có thể xuất hiện gồm: Perplexity, Consensus, Elicit, Scite, '
+              'ResearchRabbit, Research Rabbit, Connected Papers, Semantic Scholar, Litmaps, '
+              'Google Scholar, PubMed, Web of Science, Scopus, The Conversation, Psychology Today, '
+              'Neuroscience News, Nature, Science, Cell, Annual Review, Psychological Bulletin.'
+          )
+          model = WhisperModel('small', device='cpu', compute_type='int8')
+          segments, info = model.transcribe(
+              '/tmp/audio.wav',
+              language='vi',
+              beam_size=5,
+              vad_filter=True,
+              initial_prompt=prompt,
+              condition_on_previous_text=True,
+          )
+          plain=[]
+          timed=[]
+          for seg in segments:
+              text=seg.text.strip()
+              if text:
+                  plain.append(text)
+                  timed.append(f'[{seg.start:07.2f} - {seg.end:07.2f}] {text}')
+          Path('output/whisper_transcript.txt').write_text('\n'.join(plain), encoding='utf-8')
+          Path('output/whisper_timed.txt').write_text('\n'.join(timed), encoding='utf-8')
+          Path('output/language.txt').write_text(str(info.language), encoding='utf-8')
           PY
+
+      - name: OCR visible names and text
+        run: |
+          : > output/ocr.txt
+          for f in /tmp/fbframes/*.jpg; do
+            echo "===== $(basename "$f") =====" >> output/ocr.txt
+            tesseract "$f" stdout -l eng+vie --psm 6 2>/dev/null >> output/ocr.txt || true
+            echo >> output/ocr.txt
+          done
 
       - name: Save result to repository
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add output/transcript.txt output/transcript_timed.txt output/language.txt output/metadata.json 2>/dev/null || true
+          git add output/metadata.json output/whisper_transcript.txt output/whisper_timed.txt output/language.txt output/ocr.txt 2>/dev/null || true
           git add output/*.srt 2>/dev/null || true
           if git diff --cached --quiet; then
-            echo 'No result files to commit.'
-            exit 1
+            echo 'No new result files to commit.'
+          else
+            git commit -m 'Improve Facebook transcript with Whisper and OCR'
+            git push
           fi
-          git commit -m 'Add Facebook video transcript'
-          git push
