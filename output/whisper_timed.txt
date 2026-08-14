@@ -1,0 +1,56 @@
+[0000.00 - 0003.16] Nên tìm tài liệu nghiên cứu ở đâu, không gây khiếp, không dấu diếm.
+[0003.16 - 0006.72] Hello, xin chào các mọi người. Mình là thư hôscop podcast amateur psychology
+[0006.72 - 0009.88] tại một hộp đòi bằng tâm lý học, hiện là nguyên cứu xin tiến sĩ truyền tâm lý tại Anh.
+[0009.88 - 0012.36] Cô mình xuống tâm lý đã hiểu và tận hướng một cuộc sống mưu vẽ.
+[0012.36 - 0016.44] Rất là nhiều các bạn và các em đã comment dưới các video để hỏi con hỏi này.
+[0016.44 - 0018.36] Thì đây là cách mà mình tìm lại là nghiên cứu.
+[0018.36 - 0020.04] Mình sẽ chia ra làm 2 trường hợp.
+[0020.04 - 0022.88] Thứ nhất là trường hợp, bạn đã có con hỏi nghiên cứu thì bạn sẽ làm gì?
+[0022.88 - 0026.24] Đầu tiên, bạn hãy đặt con hỏi đó cho con AI Perplexity.
+[0026.24 - 0030.16] Bạn đọc câu trả lời của Perplexity và nhấn vào source hay là nguồn
+[0030.16 - 0033.92] để tìm cái bài báo mà liên quan nhiều nhất đến cái đề tài của bạn vừa mới hỏi.
+[0033.92 - 0037.64] Sau đó, bạn sử dụng cái bài báo này để bạn đưa vào 1 con AI khác,
+[0037.64 - 0039.76] tựa là ConnectedPapers.com.
+[0039.76 - 0042.40] Đây là con AI có thể giúp bạn connect
+[0042.40 - 0046.04] hay là link những cái bài báo mà đã được cái bài báo bạn vừa mới đọc
+[0046.04 - 0049.76] chích dẫn hoặc là những chích dẫn mà liên quanh cái bài báo bạn vừa mới đọc.
+[0049.80 - 0053.32] Tiếp theo nữa, bạn sẽ lấy cái bài báo mà bạn cảm thấy là phù hợp nhất
+[0053.32 - 0056.28] đưa vào 1 con AI khác, gọi là Semantic Scholar.
+[0056.28 - 0060.84] Và con AI này nó sẽ đưa ra những cái bài báo cũng hơi giống như ConnectedPapers.
+[0060.84 - 0065.80] Nhưng mà nó còn thêm 1 cái yếu tố nữa đó là nó sẽ có 1 cái tác gọi là Influential
+[0065.80 - 0067.36] hay là Highly Influential.
+[0067.36 - 0068.96] Thì bạn hãy đọc những cái bài báo này.
+[0068.96 - 0073.36] Đây là những cái báo mà mang tính ảnh hưởng rất là lớn trong cái lĩnh vực nghiên cứu đó.
+[0073.36 - 0077.92] Sau đó thì bạn hãy đọc thêm những cái báo mà được xuất bản gần đây nhất 2025-2026
+[0077.92 - 0080.04] hoặc là 2024 thì cũng khá là mới đó.
+[0080.04 - 0083.92] Và cuối cùng để tìm hiểu 1 chủ đề thì bạn nên đọc những cái bài review
+[0083.92 - 0087.00] hay là bà nghiên cứu tổng hợp từ các tờ báo review lớn
+[0087.00 - 0091.44] như là Nature Review, Training Cognitive Sciences hoặc là Science Review.
+[0091.44 - 0094.76] Thứ 2 là nếu bạn tàu mò và là mọi người ha mọc hỏi
+[0094.76 - 0098.08] nhưng mà chưa có câu hỏi hay là đề tài nghiên cứu thì bạn có thể làm cách này.
+[0098.08 - 0101.68] Bạn hãy tìm đọc những cái tờ báo mà nguồn là Science Communication
+[0101.68 - 0105.72] là nơi mà những nhà khoa học và các nhà báo sẽ khọc tác với nhau
+[0105.76 - 0109.16] để viết những cái nội dung về những cái đề tài nghiên cứu khoa học mới nhất
+[0109.16 - 0110.92] dưới 1 cái nguồn ngữ dễ hiểu hơn.
+[0110.92 - 0115.12] Đặc biệt cho tâm lý học và khoa học thần kinh thì mình sẽ giới thiệu trang
+[0115.12 - 0118.12] Neuroscience News và trang The Transmitters.
+[0118.12 - 0120.84] Còn nếu các bạn muốn tìm hiểu tất cả các lĩnh vực hoa học nói chung
+[0120.84 - 0123.32] thì mình có thể giới thiệu The Conversation
+[0123.32 - 0125.92] là 1 cái tờ báo mà chuyên phỏng vấn những cái nhà khoa học.
+[0125.92 - 0128.88] Còn nếu bạn có cơ hội may mắn đang được theo học tại các trường đại học
+[0128.88 - 0131.92] mà cho bạn quyền truy cập vào những cái trang như là
+[0131.96 - 0135.72] nature.com, cell.com hay là science.org
+[0135.72 - 0139.28] thì mình rất rất rất là khuyên là mọi người hãy tận dũng cái này
+[0139.28 - 0141.08] để có thể tìm đọc những cái bài báo khoa học.
+[0141.08 - 0144.68] Có 1 điều thì mình rất là tiết là mình không thể hỗ trợ các bạn được
+[0144.68 - 0147.00] bởi vì đây là 1 vấn đề cho lĩnh vực hoa học nói chung
+[0147.00 - 0150.76] đó là vấn đề ghi khiếp hay là giữ cổng trong khoa học
+[0150.76 - 0152.88] thì bạn chỉ có thể đọc những cái bài báo
+[0152.88 - 0155.24] đặc biệt là những cái xuất bản trong cái tờ báo danh giá
+[0155.24 - 0158.16] như là nature, cell, hay là science
+[0158.16 - 0161.80] bằng cách trả tiền hoặc là bằng cách trực thuộc 1 cái đại học trả tiền
+[0161.84 - 0164.24] Mình mong là cái video này là giả đáp khỏi của mọi người
+[0164.24 - 0167.04] và mình mong là tất cả những cái nguồn thông tin này sẽ giúp đỡ mọi người
+[0167.04 - 0168.84] để tất cả chúng ta được có thể học hỏi
+[0168.84 - 0171.76] và có thể xóa bỏ cái nạn ghét cổng về thông tin.
+[0171.76 - 0174.48] Vậy ha, mình sẽ hẹn gặp lại mọi người video tiếp theo. Bye bye.
